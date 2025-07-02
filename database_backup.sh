@@ -25,4 +25,9 @@ aws s3 cp $LOCAL_BACKUP_FILE s3://$S3_BUCKET/
 echo "Cleaning up container dump..."
 docker exec $CONTAINER_NAME rm -f $DUMP_FILE
 
+# Step 5: Remove local backup file
+echo "Removing local backup file $LOCAL_BACKUP_FILE..."
+rm -f "$LOCAL_BACKUP_FILE"
+
+
 echo "✅ Backup and upload complete!"
