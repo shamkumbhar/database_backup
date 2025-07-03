@@ -31,3 +31,16 @@ echo "[INFO] Removing local backup file $LOCAL_BACKUP_FILE..."
 rm -f "$LOCAL_BACKUP_FILE"
 
 echo "✅ Backup and upload complete!"
+
+
+
+#!/bin/bash
+
+CRON_SCHEDULE="45 18 * * *"  # 5:30 PM IST
+CRON_COMMAND="/bin/bash /home/ubuntu/database_backup/database_backup.sh >> /home/ubuntu/database_backup/cron_backup.log 2>&1"
+
+# Add the cron job
+(crontab -l 2>/dev/null; echo "$CRON_SCHEDULE $CRON_COMMAND") | crontab -
+
+echo "[INFO] Cron job added."
+
