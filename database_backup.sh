@@ -11,11 +11,11 @@ S3_BUCKET="hrmsdb-database-01"
 
 # Step 1: Dump database inside the container
 echo "Dumping MySQL database '$DATABASE_NAME' inside container '$CONTAINER_NAME'..."
-docker exec $CONTAINER_NAME sh -c "mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD $DATABASE_NAME > $DUMP_FILE"
+kubectl exec $CONTAINER_NAME sh -c "mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD $DATABASE_NAME > $DUMP_FILE"
 
 # Step 2: Copy dump file to host
 echo "Copying dump to host as $LOCAL_BACKUP_FILE..."
-docker cp $CONTAINER_NAME:$DUMP_FILE $LOCAL_BACKUP_FILE
+kubectl cp $CONTAINER_NAME:$DUMP_FILE $LOCAL_BACKUP_FILE
 
 # Step 3: Upload to S3
 echo "Uploading $LOCAL_BACKUP_FILE to s3://$S3_BUCKET/ ..."
