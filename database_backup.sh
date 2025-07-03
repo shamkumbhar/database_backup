@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration
-CONTAINER_NAME="hrms_mysql-service_1"
+CONTAINER_NAME="mysql-0"
 DATABASE_NAME="hrmsdb"
 MYSQL_USER="root"
 MYSQL_PASSWORD="root"
